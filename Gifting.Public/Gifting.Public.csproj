@@ -2,14 +2,32 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ViewModels\Occasions\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
+
+    <ItemGroup>
+        <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+      <TypeScriptCompile Include="src\app\services\app.service.ts" />
+      <TypeScriptCompile Include="src\app\services\occasion.service.ts" />
+      <TypeScriptCompile Include="src\app\services\idea.service.ts" />
+      <TypeScriptCompile Include="src\app\models\idea.ts" />
+    </ItemGroup>
 
 </Project>

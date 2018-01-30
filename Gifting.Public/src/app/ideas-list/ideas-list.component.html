@@ -1,0 +1,8 @@
+<ul>
+	<li *ngFor="let idea of ideasObservable | async">
+		{{idea.name}}
+		<span>
+			<a href="{{idea.id}}" target="_blank" class="btn btn-danger">Go To Idea</a>
+		</span>
+	</li>
+</ul>

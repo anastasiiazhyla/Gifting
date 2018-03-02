@@ -6,9 +6,8 @@ import { AppService } from './services/app.service';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
-	constructor(private _appService: AppService) { }
+	constructor(private _appService: AppService) {}
 
 	ngOnInit() {
 	}

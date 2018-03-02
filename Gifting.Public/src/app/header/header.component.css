@@ -1,0 +1,11 @@
+.navbar a {
+	color: white;
+}
+
+.navbar a.navbar-brand {
+	color: orange;
+}
+
+.navbar .welcome {
+	color: orange;
+}

@@ -11,7 +11,7 @@ export interface Grantee {
 export class GranteeService {
 	private getAllGranteesUrl: string = 'api/Grantees/';
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	getAllGrantees(): Observable<Grantee[]> {
 		return this.http.get<Grantee[]>(this.getAllGranteesUrl);

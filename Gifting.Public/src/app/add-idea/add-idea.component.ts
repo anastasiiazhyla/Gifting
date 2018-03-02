@@ -5,9 +5,9 @@ import { GranteeService } from '../services/grantee.service';
 import { Idea } from '../models/idea';
 
 @Component({
-  selector: 'app-add-idea',
-  templateUrl: './add-idea.component.html',
-  styleUrls: ['./add-idea.component.css']
+	selector: 'app-add-idea',
+	templateUrl: './add-idea.component.html',
+	styleUrls: ['./add-idea.component.css']
 })
 export class AddIdeaComponent implements OnInit {
 
@@ -20,16 +20,16 @@ export class AddIdeaComponent implements OnInit {
 		private _occasionService: OccasionService) {
 	}
 
-  ngOnInit() {
-	  this._granteeService.getAllGrantees().subscribe(values => {
-		  this.grantees = values;
-	  });
-	  this._occasionService.getAllOccasions().subscribe(values => {
-		  this.occasions = values;
-	  });
-  }
+	ngOnInit() {
+		this._granteeService.getAllGrantees().subscribe(values => {
+			this.grantees = values;
+		});
+		this._occasionService.getAllOccasions().subscribe(values => {
+			this.occasions = values;
+		});
+	}
 
-  onSubmit() {
-	  this._ideaService.createIdea(this.model).subscribe();
-  }
+	onSubmit() {
+		this._ideaService.createIdea(this.model).subscribe();
+	}
 }

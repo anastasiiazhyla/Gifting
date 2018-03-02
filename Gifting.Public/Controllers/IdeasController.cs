@@ -1,72 +1,74 @@
-using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
-using Gifting.Public.ViewModels.Ideas;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using Gifting.Core.Logging;
+using Gifting.Models.Entities;
+using Gifting.Public.Mappers;
+using Gifting.Public.ViewModels.Ideas;
+using Gifting.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace Gifting.Public.Controllers
 {
+	[Authorize]
 	public class IdeasController : BaseApiController
 	{
-		private static List<IdeaViewModel> _list = new List<IdeaViewModel>
-			{
-				new IdeaViewModel { Id = 1, Name = "Book", DateCreated = DateTime.Now.AddMonths(-1) },
-				new IdeaViewModel { Id = 23, Name = "Tea set", DateCreated = DateTime.Now.AddDays(-1) }
-			};
+		private readonly IIdeasService _ideasService;
+		private readonly ILogger<IdeasController> _logger;
 
-		[HttpGet]
-		public IEnumerable<IdeaViewModel> GetAll()
+		public IdeasController(IIdeasService ideasService, ILogger<IdeasController> logger)
 		{
-			return _list;
+			_ideasService = ideasService;
+			_logger = logger;
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("[action]")]
+		public IEnumerable<IdeaResponseViewModel> GetMy()
+		{
+			ClaimsPrincipal currentUser = HttpContext.User;
+
+			int userId = int.Parse(currentUser.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Jti)?.Value);
+
+			return _ideasService.GetByUserId(userId).Select(IdeaModelMapper.MapToIdeaResponseViewModel).ToList();
+		}
+
+		[HttpGet, AllowAnonymous]
+		public IEnumerable<IdeaResponseViewModel> GetAll()
+		{
+			return _ideasService.GetAll().Select(IdeaModelMapper.MapToIdeaResponseViewModel).ToList();
+		}
+
+		[HttpGet("{id}", Name = "GetById")]
 		public IActionResult GetById(int id)
 		{
-			var item = _list.FirstOrDefault(t => t.Id == id);
+			Idea item = _ideasService.GetById(id);
 			if (item == null)
 			{
+				_logger.LogWarning(LoggingEvents.Warning.GetItemNotFound, $"Idea id={id} not found");
 				return NotFound();
 			}
+
 			return new ObjectResult(item);
 		}
 
 		[HttpPost]
-		public IActionResult Create([FromBody]CreateIdeaViewModel createIdeaViewModel)
+		public IActionResult Create([FromBody] CreateIdeaRequestViewModel createIdeaViewModel)
 		{
-			//IdeaViewModel item = new IdeaViewModel
-			//{
-			//	Id = new Random().Next(),
-			//	Name = createIdeaViewModel.Name,
-			//	Description = createIdeaViewModel.Description,
-			//	GranteeId = createIdeaViewModel.GranteeId,
-			//	Image = createIdeaViewModel.Image,
-			//	OccasionId = createIdeaViewModel.OccasionId,
-			//	WhereToBuy = createIdeaViewModel.WhereToBuy,
-			//	DateCreated = DateTime.Now
-			//};
-			//_list.Add(item);
+			Idea item = IdeaModelMapper.BuildIdeaModel(createIdeaViewModel);
+			item.Id = _ideasService.Create(item);
 
-			//return CreatedAtRoute("GetById", new { id = item.Id }, item);
-
-			return new NoContentResult();
+			return CreatedAtRoute("GetById", new { id = item.Id }, item);
 		}
 
 		[HttpPut("{id}")]
-		public IActionResult Update(long id, [FromBody]UpdateIdeaViewModel updateIdeaViewModel)
+		public IActionResult Update(long id, [FromBody] UpdateIdeaRequestViewModel updateIdeaViewModel)
 		{
-			var item = _list.FirstOrDefault(t => t.Id == id);
-			if (item == null)
-			{
-				return NotFound();
-			}
+			Idea item = IdeaModelMapper.BuildIdeaModel(updateIdeaViewModel);
 
-			item.Name = updateIdeaViewModel.Name;
-			item.Description = updateIdeaViewModel.Description;
-			item.GranteeId = updateIdeaViewModel.GranteeId;
-			item.Image = updateIdeaViewModel.Image;
-			item.OccasionId = updateIdeaViewModel.OccasionId;
-			item.WhereToBuy = updateIdeaViewModel.WhereToBuy;
+			_ideasService.Update(item);
 
 			return new NoContentResult();
 		}
@@ -74,15 +76,11 @@ namespace Gifting.Public.Controllers
 		[HttpDelete("{id}")]
 		public IActionResult Delete(int id)
 		{
-			var item = _list.FirstOrDefault(t => t.Id == id);
-			if (item == null)
-			{
-				return NotFound();
-			}
-
-			_list.Remove(item);
+			_ideasService.Delete(id);
 
 			return new NoContentResult();
+
+			// todo: return NotFound();
 		}
 	}
 }

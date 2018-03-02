@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { UserProfile } from '../models/account';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+	selector: "app-header",
+	templateUrl: "./header.component.html",
+	styleUrls: ["./header.component.css"]
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+	constructor(private authProfile: UserProfile) {}
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
+	logOut() {
+		this.authProfile.resetProfile();
+	}
 }

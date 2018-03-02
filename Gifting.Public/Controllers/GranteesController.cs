@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using Gifting.Public.ViewModels.Common;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Gifting.Public.Controllers
 {
@@ -14,7 +14,8 @@ namespace Gifting.Public.Controllers
 				new DropdownItemViewModel(1, "Mom"),
 				new DropdownItemViewModel(2, "Dad"),
 				new DropdownItemViewModel(3, "Wife"),
-				new DropdownItemViewModel(4, "Husband")
+				new DropdownItemViewModel(4, "Husband"),
+				new DropdownItemViewModel(5, "Son")
 			};
 
 			return list;

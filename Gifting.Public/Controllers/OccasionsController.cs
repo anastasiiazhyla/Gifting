@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
 using Gifting.Public.ViewModels.Common;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Gifting.Public.Controllers
 {

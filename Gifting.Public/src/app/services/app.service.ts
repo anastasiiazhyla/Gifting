@@ -10,7 +10,7 @@ import 'rxjs/add/observable/throw';
 export class AppService {
 	private _serviceUrl = 'api/values';
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	getValues(): Observable<string[]> {
 		return this.http.get<string[]>(this._serviceUrl);

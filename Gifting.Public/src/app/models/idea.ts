@@ -1,3 +1,6 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class Idea {
 	constructor(
 		public name: string,
@@ -8,5 +11,6 @@ export class Idea {
 		public grantee?: number,
 		public id?: number,
 		public dateCreated?: Date
-	) { }
+	) {
+	}
 }

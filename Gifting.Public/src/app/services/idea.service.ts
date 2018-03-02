@@ -7,7 +7,7 @@ import { Idea } from '../models/idea';
 export class IdeaService {
 	private baseUrl: string = 'api/Ideas/';
 
-	constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) {}
 
 	getAllIdeas(): Observable<Idea[]> {
 		return this.http.get<Idea[]>(this.baseUrl);
@@ -18,7 +18,6 @@ export class IdeaService {
 	}
 
 	createIdea(idea: Idea): Observable<Idea> {
-		console.log('you submitted value:', idea); 
 		return this.http.post<Idea>(this.baseUrl, idea);
 	}
 

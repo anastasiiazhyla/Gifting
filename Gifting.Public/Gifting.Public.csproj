@@ -1,33 +1,59 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
+    <UserSecretsId>c84d402f-9c70-475a-be7e-409d78142bb7</UserSecretsId>
   </PropertyGroup>
-
+  <ItemGroup>
+    <Compile Remove="Controllers\TokenController.cs" />
+    <Compile Remove="JWTSettings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="src\app\app.constants" />
+    <None Remove="src\app\models\account.ts" />
+    <None Remove="src\app\models\server-response.ts" />
+    <None Remove="src\app\services\http.service.ts" />
+    <None Remove="src\app\services\IOccasion.ts" />
+  </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Occasions\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="NLog" Version="4.5.0-rc05" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.5.0-rc2" />
   </ItemGroup>
-
-    <ItemGroup>
-        <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="1.0.0" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <TypeScriptCompile Include="src\app\app-routing.module.ts" />
-      <TypeScriptCompile Include="src\app\services\app.service.ts" />
-      <TypeScriptCompile Include="src\app\services\occasion.service.ts" />
-      <TypeScriptCompile Include="src\app\services\idea.service.ts" />
-      <TypeScriptCompile Include="src\app\models\idea.ts" />
-    </ItemGroup>
-
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gifting.Models\Gifting.Models.csproj" />
+    <ProjectReference Include="..\Gifting.Services\Gifting.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="src\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="src\app\models\account.ts" />
+    <TypeScriptCompile Include="src\app\models\common\server-response.ts" />
+    <TypeScriptCompile Include="src\app\services\app.service.ts" />
+    <TypeScriptCompile Include="src\app\services\account.service.ts" />
+    <TypeScriptCompile Include="src\app\models\occasion.ts" />
+    <TypeScriptCompile Include="src\app\services\common\base.service.ts" />
+    <TypeScriptCompile Include="src\app\services\common\http.service.ts" />
+    <TypeScriptCompile Include="src\app\services\idea.service.ts" />
+    <TypeScriptCompile Include="src\app\models\idea.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Occasion]
+(
+	[Id] BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	[Name] NVARCHAR(255) NOT NULL,
+	[UserId] BIGINT NULL FOREIGN KEY REFERENCES [User](Id),
+	[Period] tinyint NULL
+)

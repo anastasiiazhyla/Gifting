@@ -95,10 +95,17 @@ namespace Gifting.Public
 
 		private void RegisterDependencyInjections(IServiceCollection services)
 		{
-			services.AddScoped<IIdeasService, IdeasService>();
+			// services
+			services.AddScoped<IIdeaService, IdeaService>();
 			services.AddScoped<IAccountService, AccountService>();
+			services.AddScoped<IGranteeService, GranteeService>();
+			services.AddScoped<IOccasionService, OccasionService>();
 
+			// repositories
 			services.AddScoped<IUserRepository, UserRepository>();
+			services.AddScoped<IIdeaRepository, IdeaRepository>();
+			services.AddScoped<IGranteeRepository, GranteeRepository>();
+			services.AddScoped<IOccasionRepository, OccasionRepository>();
 		}
 	}
 }

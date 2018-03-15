@@ -1,10 +1,32 @@
 import { Injectable } from '@angular/core';
 import { Response, ResponseOptions } from '@angular/http';
-
+import { FormGroup } from '@angular/forms';
 import { IError } from '../../models/common/error';
+import { httpStatuses } from '../../app.constants';
 
 @Injectable()
-export class CustomErrorHandlerService {
+export class ErrorHandlingService {
+
+	processErrorResponse<T>(error, form: FormGroup, errorMessages: string[]) {
+		if (error.status === httpStatuses.badRequest) {
+			for (let key in error.error) {
+				let messages = error.error[key];
+				messages.forEach((message) => {
+					if (form.contains(key)) {
+						form.controls[key].setErrors({
+							'remote': message
+						});
+					} else {
+						errorMessages.push(message);
+					}
+				});
+			}
+		} else if (error.message) {
+			errorMessages.push(error.message);
+		} else {
+			errorMessages.push('Something went wrong. Please, try again in few minutes.');
+		}
+	}
 
 	tryParseError(error: Response): any {
 		try {

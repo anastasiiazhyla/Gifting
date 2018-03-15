@@ -65,6 +65,7 @@ namespace Gifting.Public.Controllers
 			if (ModelState.IsValid)
 			{
 				User user = new User(viewModel.FirstName, viewModel.LastName, viewModel.Email, viewModel.Username, viewModel.Password);
+				//ModelState.AddModelError("emailAddress", "This email already exists");
 
 				await _accountService.Create(user);
 
@@ -105,7 +106,7 @@ namespace Gifting.Public.Controllers
 				new Claim(ClaimsIdentity.DefaultRoleClaimType, "user"),
 
 				new Claim("id", user.Id.ToString()),
-				new Claim(JwtRegisteredClaimNames.Email, user.Email),
+				new Claim("email", user.Email),
 				new Claim("name", $"{user.FirstName} {user.LastName}")
 			};
 

@@ -1,0 +1,45 @@
+<div class="container">
+	<h1>Add new idea</h1>
+	<general-error-message [errorMessages]="errorMessages"></general-error-message>
+	<form #addIdeaForm="ngForm" (ngSubmit)="onSubmit(addIdeaForm)">
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" class="form-control" id="name" required maxlength="255" (ngModel)="name" name="name" #name="ngModel">
+			<field-error-message [control]="name"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="description">Description</label>
+			<input type="text" class="form-control" id="description" (ngModel)="description" name="description" #description="ngModel">
+			<field-error-message [control]="description"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="image">Image</label>
+			<input type="text" class="form-control" id="image" (ngModel)="image" name="image" #image="ngModel">
+			<field-error-message [control]="image"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="whereToBuy">Where to buy</label>
+			<input type="text" class="form-control" id="whereToBuy" (ngModel)="whereToBuy" name="whereToBuy" #whereToBuy="ngModel">
+			<field-error-message [control]="whereToBuy"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="occasionId">Occasion</label>
+			<select class="form-control" id="occasionId" (ngModel)="occasionId" name="occasionId" #occasionId="ngModel">
+				<option *ngFor="let o of occasions" [value]="o.id">
+					{{o.name}}
+				</option>
+			</select>
+			<field-error-message [control]="occasionId"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="granteeId">For whom</label>
+			<select class="form-control" id="granteeId" (ngModel)="granteeId" name="granteeId" #granteeId="ngModel">
+				<option *ngFor="let g of grantees" [value]="g.id">
+					{{g.name}}
+				</option>
+			</select>
+			<field-error-message [control]="granteeId"></field-error-message>
+		</div>
+		<button type="submit" class="btn btn-default" [disabled]="!addIdeaForm.valid">Submit</button>
+	</form>
+</div>

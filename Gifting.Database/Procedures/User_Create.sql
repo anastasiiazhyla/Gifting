@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[User_Create]
-	@Id bigint OUTPUT,
-	@Email nvarchar(255),
-	@Username nvarchar(255),
-	@FirstName nvarchar(255),
-	@LastName nvarchar(255),
-	@PasswordHash nvarchar(MAX)
+	@Id BIGINT OUTPUT,
+	@Email NVARCHAR(255),
+	@Username NVARCHAR(255),
+	@FirstName NVARCHAR(255),
+	@LastName NVARCHAR(255),
+	@PasswordHash NVARCHAR(MAX)
 AS
 BEGIN
 

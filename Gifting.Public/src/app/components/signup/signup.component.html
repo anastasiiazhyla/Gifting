@@ -1,0 +1,32 @@
+<div class="container">
+	<h1>Sign up</h1>
+	<general-error-message [errorMessages]="errorMessages"></general-error-message>
+	<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+		<div class="form-group">
+			<label for="FirstName">Fisrt name</label>
+			<input type="text" class="form-control" id="FirstName" required (ngModel)="FirstName" name="FirstName" #FirstName="ngModel">
+			<field-error-message [control]="FirstName"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="LastName">Last name</label>
+			<input type="text" class="form-control" id="LastName" required (ngModel)="LastName" name="LastName" #LastName="ngModel">
+			<field-error-message [control]="LastName"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="Email">Email</label>
+			<input type="text" class="form-control" id="Email" required (ngModel)="Email" name="Email" #Email="ngModel">
+			<field-error-message [control]="Email"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="Username">Username</label>
+			<input type="text" class="form-control" id="Username" required (ngModel)="Username" name="Username" #Username="ngModel">
+			<field-error-message [control]="Username"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="Password">Password</label>
+			<input type="password" class="form-control" id="Password" required (ngModel)="Password" name="Password" #Password="ngModel">
+			<field-error-message [control]="Password"></field-error-message>
+		</div>
+		<button type="submit" class="btn btn-default" [disabled]="!signupForm.valid">Submit</button>
+	</form>
+</div>

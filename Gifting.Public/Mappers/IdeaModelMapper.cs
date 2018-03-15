@@ -1,4 +1,3 @@
-using Gifting.Models;
 using Gifting.Models.Entities;
 using Gifting.Public.ViewModels.Ideas;
 
@@ -12,7 +11,7 @@ namespace Gifting.Public.Mappers
 				idea.Id,
 				idea.Name,
 				idea.Description,
-				idea.Image,
+				idea.ImageUrl,
 				idea.WhereToBuy,
 				idea.OccasionId,
 				idea.GranteeId,
@@ -26,7 +25,7 @@ namespace Gifting.Public.Mappers
 				Name = viewModel.Name,
 				Description = viewModel.Description,
 				GranteeId = viewModel.GranteeId,
-				Image = viewModel.Image,
+				ImageUrl = viewModel.ImageUrl,
 				OccasionId = viewModel.OccasionId,
 				WhereToBuy = viewModel.WhereToBuy
 			};
@@ -40,7 +39,7 @@ namespace Gifting.Public.Mappers
 				Name = viewModel.Name,
 				Description = viewModel.Description,
 				GranteeId = viewModel.GranteeId,
-				Image = viewModel.Image,
+				ImageUrl = viewModel.ImageUrl,
 				OccasionId = viewModel.OccasionId,
 				WhereToBuy = viewModel.WhereToBuy
 			};

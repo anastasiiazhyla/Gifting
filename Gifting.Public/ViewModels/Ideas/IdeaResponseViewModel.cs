@@ -5,13 +5,13 @@ namespace Gifting.Public.ViewModels.Ideas
 	public class IdeaResponseViewModel
 	{
 		public IdeaResponseViewModel(
-			int id,
+			long id,
 			string name,
 			string description,
 			string image,
 			string whereToBuy,
-			int? occasionId,
-			int? granteeId,
+			long? occasionId,
+			long? granteeId,
 			DateTime dateCreated)
 		{
 			Id = id;
@@ -24,7 +24,7 @@ namespace Gifting.Public.ViewModels.Ideas
 			DateCreated = dateCreated;
 		}
 
-		public int Id { get; set; }
+		public long Id { get; set; }
 
 		public string Name { get; set; }
 
@@ -34,9 +34,9 @@ namespace Gifting.Public.ViewModels.Ideas
 
 		public string WhereToBuy { get; set; }
 
-		public int? OccasionId { get; set; }
+		public long? OccasionId { get; set; }
 
-		public int? GranteeId { get; set; }
+		public long? GranteeId { get; set; }
 
 		public DateTime DateCreated { get; set; }
 	}

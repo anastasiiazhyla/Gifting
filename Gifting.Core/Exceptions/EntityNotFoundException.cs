@@ -4,15 +4,15 @@ namespace Gifting.Core
 {
 	public class EntityNotFoundException : Exception
 	{
-		public EntityNotFoundException(int id, Type type) : this(id, $"{type.Name} with id={id} not found")
+		public EntityNotFoundException(long id, Type type) : this(id, $"{type.Name} with id={id} not found")
 		{
 		}
 
-		public EntityNotFoundException(int id, string message) : base(message)
+		public EntityNotFoundException(long id, string message) : base(message)
 		{
 			Id = id;
 		}
 
-		public int Id { get; }
+		public long Id { get; }
 	}
 }

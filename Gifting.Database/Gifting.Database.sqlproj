@@ -59,6 +59,8 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="Procedures" />
+    <Folder Include="Scripts" />
+    <Folder Include="Scripts\DefaultData" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\User.sql" />
@@ -66,11 +68,38 @@
     <Build Include="Procedures\User_GetByUsername.sql" />
     <Build Include="Procedures\User_Create.sql" />
     <Build Include="Procedures\User_Update.sql" />
+    <Build Include="Tables\Event.sql" />
+    <Build Include="Tables\Grantee.sql" />
+    <Build Include="Tables\Occasion.sql" />
+    <Build Include="Tables\OccasionDates.sql" />
+    <Build Include="Tables\Idea.sql" />
+    <Build Include="Tables\IdeaForEvent.sql" />
+    <Build Include="Tables\Gift.sql" />
+    <Build Include="Procedures\Idea_Create.sql" />
+    <Build Include="Procedures\Idea_Update.sql" />
+    <Build Include="Procedures\Idea_GetById.sql" />
+    <Build Include="Procedures\Idea_GetAll.sql" />
+    <Build Include="Procedures\Idea_GetByUserId.sql" />
+    <Build Include="Procedures\Idea_Delete.sql" />
+    <Build Include="Procedures\Grantee_Create.sql" />
+    <Build Include="Procedures\Grantee_Delete.sql" />
+    <Build Include="Procedures\Grantee_Update.sql" />
+    <Build Include="Procedures\Grantee_GetById.sql" />
+    <Build Include="Procedures\Grantee_GetByUserId.sql" />
+    <Build Include="Procedures\Occasion_Create.sql" />
+    <Build Include="Procedures\Occasion_Delete.sql" />
+    <Build Include="Procedures\Occasion_GetById.sql" />
+    <Build Include="Procedures\Occasion_GetByUserId.sql" />
+    <Build Include="Procedures\Occasion_Update.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Gifting.Database.refactorlog" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Gifting.Database.publish.xml" />
+    <None Include="Scripts\DefaultData\InitialData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>

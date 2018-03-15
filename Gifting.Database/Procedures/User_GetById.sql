@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[User_GetById]
-	@Id bigint
+	@Id BIGINT
 AS
 BEGIN
 	SET NOCOUNT ON;

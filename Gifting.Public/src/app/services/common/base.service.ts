@@ -1,53 +1,60 @@
 import { Injectable } from '@angular/core';
 import { Response } from '@angular/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { HttpClient } from '@angular/common/http';
+
 import { IError } from '../../models/common/error';
 import { IServerResponse } from '../../models/common/server-response';
-import { CustomErrorHandlerService } from './error-handling.service';
+import { UserProfile } from '../../models/account';
+import { ErrorHandlingService } from './error-handling.service';
 import { HelperService } from './helper.service';
 import { appVariables } from '../../app.constants';
-import { UserProfile } from '../../models/account';
 
 @Injectable()
 export class BaseService {
 	constructor(
 		public http: HttpClient,
-		public errorHandler: CustomErrorHandlerService,
+		public errorHandlingService: ErrorHandlingService,
 		public helperService: HelperService,
-		private authProfile: UserProfile) {
+		public authProfile: UserProfile) {
 	}
 
-	get<T>(url): Observable<T> {
-		return this.http.get<IServerResponse<T>>(url)
+	get<T>(url, options?: {
+		headers?: HttpHeaders | {
+			[header: string]: string | string[];
+		};
+		params?: HttpParams | {
+			[param: string]: string | string[];
+		};
+		}): Observable<T> {
+		return this.http.get<IServerResponse<T>>(url, options)
 			.map((res: IServerResponse<T>) => {
 				return this.handleResponse(res);
 			});
 	}
 
-	post<T>(url, postBody: any): Observable<T> {
-		console.log('post to ' + url);
+	post<T>(url, postBody?): Observable<T> {
 		return this.http.post<IServerResponse<T>>(url, postBody)
 			.map((res: IServerResponse<T>) => {
 				return this.handleResponse(res);
 			});
 	}
 
-	delete<T>(url, postBody: any): Observable<T> {
+	delete<T>(url, postBody?): Observable<T> {
 		return this.http.delete<IServerResponse<T>>(url)
 			.map((res: IServerResponse<T>) => {
 				return this.handleResponse(res);
 			});
 	}
 
-	put<T>(url, putData): Observable<T>{
+	put<T>(url, putData?): Observable<T>{
 		return this.http.put<IServerResponse<T>>(url, putData)
 			.map((res: IServerResponse<T>) => {
 				return this.handleResponse(res);
 			});
 	}
 
-	upload<T>(url: string, file: File): Observable<T> {
+	upload<T>(url, file: File): Observable<T> {
 		const formData: FormData = new FormData();
 		if (file) {
 			formData.append('files', file, file.name);
@@ -76,11 +83,10 @@ export class BaseService {
 	handleResponse<T>(response: IServerResponse<T>): T {
 		// My API sends a new jwt access token with each request,
 		// so store it in the local storage, replacing the old one.
-
 		// todo: this.refreshToken(response);
 		if (response.errors) {
 			const error: IError = { errors: response.errors, message: response.message };
-			throw new Error(this.errorHandler.parseCustomServerErrorToString(error));
+			throw new Error(this.errorHandlingService.parseCustomServerErrorToString(error));
 		} else {
 			return response.data;
 		}

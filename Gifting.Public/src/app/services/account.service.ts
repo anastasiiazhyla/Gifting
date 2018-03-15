@@ -2,18 +2,23 @@ import { Injectable } from '@angular/core';
 import { UserProfile, IProfile } from '../models/account';
 import { BaseService } from './common/base.service';
 import { HelperService } from './common/helper.service'
+import { HttpClient } from '@angular/common/http';
+import { ErrorHandlingService } from './common/error-handling.service';
 
 @Injectable()
-export class AccountService {
+export class AccountService extends BaseService {
 	private baseUrl: string = 'api/Account/';
 
 	redirectUrl: string;
 	errorMessage: string;
 
 	constructor(
-		private base: BaseService,
-		//private helperService: HelperService,
-		private authProfile: UserProfile) { }
+		public http: HttpClient,
+		public errorHandlingService: ErrorHandlingService,
+		public helperService: HelperService,
+		public authProfile: UserProfile) {
+			super(http, errorHandlingService, helperService, authProfile);
+		}
 
 	login(username, password) {
 		const credentials = {
@@ -21,8 +26,8 @@ export class AccountService {
 			password: password
 		};
 
-		return this.base.post<IProfile>(this.baseUrl + 'Login', credentials)
-			.map((userProfile) => {
+		return super.post(this.baseUrl + 'Login', credentials)
+			.map((userProfile: IProfile) => {
 				this.authProfile.setProfile(userProfile);
 				return userProfile;
 			});
@@ -37,8 +42,8 @@ export class AccountService {
 			password
 		};
 
-		return this.base.post<IProfile>(this.baseUrl + '/Register', credentials)
-			.map((userProfile) => {
+		return super.post(this.baseUrl + '/Register', credentials)
+			.map((userProfile: IProfile) => {
 				this.authProfile.setProfile(userProfile);
 				return userProfile;
 			});

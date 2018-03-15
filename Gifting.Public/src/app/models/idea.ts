@@ -7,8 +7,8 @@ export class Idea {
 		public description?: string,
 		public image?: string,
 		public whereToBuy?: string,
-		public occasion?: number,
-		public grantee?: number,
+		public occasionId?: number,
+		public granteeId?: number,
 		public id?: number,
 		public dateCreated?: Date
 	) {

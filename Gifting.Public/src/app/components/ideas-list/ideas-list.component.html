@@ -1,0 +1,9 @@
+<ul>
+	<!--| async-->
+	<li *ngFor="let idea of ideas">
+		{{idea.name}}
+		<span>
+			<a href="{{idea.id}}" target="_blank" class="btn btn-danger">Go To Idea</a>
+		</span>
+	</li>
+</ul>

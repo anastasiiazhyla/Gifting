@@ -1,8 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[User_Update]
-	@Id bigint OUTPUT,
-	@Email nvarchar(255),
-	@FirstName nvarchar(255),
-	@LastName nvarchar(255)
+	@Id BIGINT OUTPUT,
+	@Email NVARCHAR(255),
+	@FirstName NVARCHAR(255),
+	@LastName NVARCHAR(255)
 AS
 BEGIN
 

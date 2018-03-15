@@ -8,7 +8,7 @@ namespace Gifting.Public.ViewModels.Ideas
 
 		public string Description { get; set; }
 
-		public string Image { get; set; }
+		public string ImageUrl { get; set; }
 
 		public string WhereToBuy { get; set; }
 

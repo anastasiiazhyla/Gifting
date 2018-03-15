@@ -6,12 +6,16 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
-import { FooterComponent } from './footer/footer.component';
-import { IdeasListComponent } from './ideas-list/ideas-list.component';
-import { AddIdeaComponent } from './add-idea/add-idea.component';
-import { HeaderComponent } from './header/header.component';
-import { ShowErrorsComponent } from './show-errors/show-errors.component';
-import { LoginComponent } from './login/login.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { IdeasListComponent } from './components/ideas-list/ideas-list.component';
+import { AddIdeaComponent } from './components/add-idea/add-idea.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { NearestEventsComponent } from './components/nearest-events/nearest-events.component';
+import { FieldErrorMessageComponent } from './components/field-error-message/field-error-message.component';
+import { GeneralErrorMessageComponent } from './components/general-error-message/general-error-message.component';
 
 import { AppService } from './services/app.service';
 import { IdeaService } from './services/idea.service';
@@ -20,14 +24,11 @@ import { GranteeService } from './services/grantee.service';
 import { AccountService } from './services/account.service';
 import { BaseService } from './services/common/base.service';
 import { HelperService } from './services/common/helper.service'
-import { CustomErrorHandlerService } from './services/common/error-handling.service'
+import { ErrorHandlingService } from './services/common/error-handling.service'
 
 import { UserProfile } from './models/account';
 import { CustomHttpInterceptor } from './services/common/custom-http-interceptor';
 import { AuthGuard } from './guards/auth.guard';
-import { SignupComponent } from './signup/signup.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { NearestEventsComponent } from './nearest-events/nearest-events.component';
 
 @NgModule({
 	declarations: [
@@ -36,11 +37,12 @@ import { NearestEventsComponent } from './nearest-events/nearest-events.componen
 		IdeasListComponent,
 		AddIdeaComponent,
 		HeaderComponent,
-		ShowErrorsComponent,
 		LoginComponent,
 		SignupComponent,
 		ForgotPasswordComponent,
-		NearestEventsComponent
+		NearestEventsComponent,
+		FieldErrorMessageComponent,
+		GeneralErrorMessageComponent
 	],
 	imports: [
 		BrowserModule,
@@ -60,7 +62,7 @@ import { NearestEventsComponent } from './nearest-events/nearest-events.componen
 		UserProfile,
 		BaseService,
 		HelperService,
-		CustomErrorHandlerService,
+		ErrorHandlingService,
 
 		AuthGuard
 	],

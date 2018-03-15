@@ -6,10 +6,6 @@
     <UserSecretsId>c84d402f-9c70-475a-be7e-409d78142bb7</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Controllers\TokenController.cs" />
-    <Compile Remove="JWTSettings.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="src\app\app.constants" />
     <None Remove="src\app\models\account.ts" />
     <None Remove="src\app\models\server-response.ts" />

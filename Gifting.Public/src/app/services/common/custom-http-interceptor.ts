@@ -10,7 +10,7 @@ import {
 	} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { UserProfile } from '../../models/account';
-import { appVariables } from '../../app.constants';
+import { appVariables, httpStatuses } from '../../app.constants';
 import { HelperService } from './helper.service';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/operators';
@@ -36,22 +36,19 @@ export class CustomHttpInterceptor implements HttpInterceptor {
 	
 		return next.handle(customReq).pipe(
 			tap(event => {
-					console.log('response received');
-					if (event instanceof HttpResponse) {
-						console.log('processing response', event);
-					}
+					//if (event instanceof HttpResponse) {
+					//	console.log('processing response', event);
+					//}
 				},
 				error => {
-					console.log('error caught');
 					if (error instanceof HttpErrorResponse) {
-						if (error.status === 401 && this.router.url !== '/login') {
+						if (error.status === httpStatuses.unauthorized && this.router.url !== '/login') {
 							this.router
 								.navigate(['/login'], { queryParams: { redirectUrl: this.router.url } })
 								.then(() => { });
 						}
 
-						this.helperService.showErrorMessage(error.message);
-						console.log('Processing http error', error);
+						//this.helperService.showErrorMessage(error.message);
 					}
 
 					return Observable.throw(error);

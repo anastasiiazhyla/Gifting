@@ -1,0 +1,17 @@
+<div class="container">
+	<h1>Login</h1>
+	<general-error-message [errorMessages]="errorMessages"></general-error-message>
+	<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+		<div class="form-group">
+			<label for="username">Username</label>
+			<input type="text" class="form-control" id="username" required maxlength="255" (ngModel)="username" name="username" #username="ngModel">
+			<field-error-message [control]="username" [customMessages]="customErrorMessages"></field-error-message>
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input type="password" class="form-control" id="password" required maxlength="255" (ngModel)="password" name="password" #password="ngModel">
+			<field-error-message [control]="password"></field-error-message>
+		</div>
+		<button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Submit</button>
+	</form>
+</div>

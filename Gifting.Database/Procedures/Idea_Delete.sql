@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[Idea_Delete]
+	@Id BIGINT
+AS
+BEGIN
+
+DELETE
+FROM [Idea]
+WHERE Id = @Id
+
+END

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Gifting.DataAccess.Interfaces;
 using Gifting.Models.Entities;
 using Gifting.Services.Interfaces;
@@ -14,12 +13,6 @@ namespace Gifting.Services
 		{
 			_userRepository = userRepository;
 		}
-
-		private static readonly List<User> Users = new List<User>
-		{
-			new User(1, "Mario", "Rossi", "mario.rossi@gmail.com", "mario", "secret"),
-			new User(2, "Bob", "Marley", "bob.Bob@gmail.com", "bob", "secret")
-		};
 
 		public async Task<long> Create(User user)
 		{

@@ -16,6 +16,16 @@ namespace Gifting.DataAccess.Repositories
 		{
 		}
 
+		public async Task<int> Delete(long id)
+		{
+			DynamicParameters parameters = new DynamicParameters();
+			parameters.Add("@Id", id);
+
+			int rowsAffected = await ExecuteAsync(StoredProcedures.User.Delete, parameters);
+
+			return rowsAffected;
+		}
+
 		public async Task<User> GetById(long id)
 		{
 			DynamicParameters parameters = new DynamicParameters();

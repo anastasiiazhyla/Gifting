@@ -12,10 +12,6 @@ import { httpStatuses } from '../../app.constants';
 export class LoginComponent implements OnInit {
 	errorMessages: string[];
 
-	customErrorMessages = {
-		'incorrect': () => 'Either your username or password were incorrect'
-	};
-
 	constructor(private accountService: AccountService, private router: Router) {
 	}
 
@@ -38,7 +34,7 @@ export class LoginComponent implements OnInit {
 					},
 					error => {
 						if (error.status === httpStatuses.unauthorized) {
-							loginForm.form.controls['username'].setErrors({ 'incorrect': true }); //formData.form.controls['email'].setErrors(null);
+							this.errorMessages = ['Either your username or password were incorrect.'];
 						} else {
 							this.errorMessages = ['Something went wrong. Please, try again in few minutes.'];
 						}

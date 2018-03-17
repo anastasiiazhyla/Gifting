@@ -16,3 +16,7 @@ a {
 a:hover{
 	text-decoration: none;
 }
+
+a > .fa {
+	padding-right: 5px;
+}

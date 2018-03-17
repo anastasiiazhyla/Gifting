@@ -18,6 +18,7 @@
 			public static string GetByUsername = "User_GetByUsername";
 			public static string Create = "User_Create";
 			public static string Update = "User_Update";
+			public static string Delete = "User_Delete";
 		}
 
 		public static class Grantee

@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [dbo].[User_Delete]
+	@Id BIGINT
+AS
+BEGIN
+
+DELETE
+FROM [User]
+WHERE Id = @Id
+
+END

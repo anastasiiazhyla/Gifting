@@ -5,7 +5,7 @@
 		<div class="form-group">
 			<label for="username">Username</label>
 			<input type="text" class="form-control" id="username" required maxlength="255" (ngModel)="username" name="username" #username="ngModel">
-			<field-error-message [control]="username" [customMessages]="customErrorMessages"></field-error-message>
+			<field-error-message [control]="username"></field-error-message>
 		</div>
 		<div class="form-group">
 			<label for="password">Password</label>

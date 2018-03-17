@@ -75,7 +75,7 @@ namespace Gifting.Public.Controllers
 			{
 				Idea item = IdeaModelMapper.BuildIdeaModel(updateIdeaViewModel);
 
-				_ideaService.Update(item);
+				await _ideaService.Update(item);
 
 				return new NoContentResult();
 			}
@@ -86,7 +86,7 @@ namespace Gifting.Public.Controllers
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
-			_ideaService.Delete(id);
+			await _ideaService.Delete(id);
 
 			return new NoContentResult();
 

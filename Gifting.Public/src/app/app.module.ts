@@ -29,6 +29,7 @@ import { ErrorHandlingService } from './services/common/error-handling.service'
 import { UserProfile } from './models/account';
 import { CustomHttpInterceptor } from './services/common/custom-http-interceptor';
 import { AuthGuard } from './guards/auth.guard';
+import { UpdateIdeaComponent } from './components/update-idea/update-idea.component';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { AuthGuard } from './guards/auth.guard';
 		ForgotPasswordComponent,
 		NearestEventsComponent,
 		FieldErrorMessageComponent,
-		GeneralErrorMessageComponent
+		GeneralErrorMessageComponent,
+		UpdateIdeaComponent
 	],
 	imports: [
 		BrowserModule,

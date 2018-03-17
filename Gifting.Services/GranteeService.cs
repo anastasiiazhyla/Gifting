@@ -2,6 +2,7 @@
 using Gifting.Models.Entities;
 using Gifting.Services.Interfaces;
 using System.Threading.Tasks;
+using Gifting.Core;
 using Gifting.DataAccess.Interfaces;
 
 namespace Gifting.Services
@@ -22,14 +23,14 @@ namespace Gifting.Services
 			return grantee.Id;
 		}
 
-		public void Delete(long id)
+		public async Task Delete(long id)
 		{
-			_granteeRepository.Delete(id);
+			int rowsAffected = await _granteeRepository.Delete(id);
 
-			//if (removedElementsCount == 0)
-			//{
-			//	throw new EntityNotFoundException(id, typeof(Grantee));
-			//}
+			if (rowsAffected == 0)
+			{
+				throw new EntityNotFoundException(id, typeof(Grantee));
+			}
 		}
 
 		public async Task<List<Grantee>> GetAvailable(long? userId)
@@ -47,20 +48,13 @@ namespace Gifting.Services
 			return availableGrantee;
 		}
 
-		public void Update(Grantee grantee)
+		public async Task Update(Grantee grantee)
 		{
-			_granteeRepository.Update(grantee);
-			//if (item == null)
-			//{
-			//	throw new EntityNotFoundException(grantee.Id, typeof(Grantee));
-			//}
-
-			//item.Name = grantee.Name;
-			//item.Description = grantee.Description;
-			//item.GranteeId = grantee.GranteeId;
-			//item.ImageUrl = grantee.ImageUrl;
-			//item.OccasionId = grantee.OccasionId;
-			//item.WhereToBuy = grantee.WhereToBuy;
+			int rowsAffected = await _granteeRepository.Update(grantee);
+			if (rowsAffected == 0)
+			{
+				throw new EntityNotFoundException(grantee.Id, typeof(Grantee));
+			}
 		}
 	}
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Gifting.Models.Entities;
 using Gifting.Services.Interfaces;
 using System.Threading.Tasks;
+using Gifting.Core;
 using Gifting.DataAccess.Interfaces;
 using Gifting.Models.Models;
 
@@ -25,14 +26,14 @@ namespace Gifting.Services
 			return idea.Id;
 		}
 
-		public void Delete(long id)
+		public async Task Delete(long id)
 		{
-			_ideaRepository.Delete(id);
+			int rowsAffected = await _ideaRepository.Delete(id);
 
-			//if (removedElementsCount == 0)
-			//{
-			//	throw new EntityNotFoundException(id, typeof(Idea));
-			//}
+			if (rowsAffected == 0)
+			{
+				throw new EntityNotFoundException(id, typeof(Idea));
+			}
 		}
 
 		public async Task<List<Idea>> GetAll(PagingParameters pagingParameters)
@@ -50,20 +51,13 @@ namespace Gifting.Services
 			return await _ideaRepository.GetByUserId(userId); ;
 		}
 
-		public void Update(Idea idea)
+		public async Task Update(Idea idea)
 		{
-			_ideaRepository.Update(idea);
-			//if (item == null)
-			//{
-			//	throw new EntityNotFoundException(idea.Id, typeof(Idea));
-			//}
-
-			//item.Name = idea.Name;
-			//item.Description = idea.Description;
-			//item.GranteeId = idea.GranteeId;
-			//item.ImageUrl = idea.ImageUrl;
-			//item.OccasionId = idea.OccasionId;
-			//item.WhereToBuy = idea.WhereToBuy;
+			int rowsAffected = await _ideaRepository.Update(idea);
+			if (rowsAffected == 0)
+			{
+				throw new EntityNotFoundException(idea.Id, typeof(Idea));
+			}
 		}
 	}
 }

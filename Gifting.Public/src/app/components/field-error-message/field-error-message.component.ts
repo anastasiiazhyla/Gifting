@@ -16,7 +16,7 @@ export class FieldErrorMessageComponent {
 		'remote': (params) => params
 	};
 
-	private static readonly defaultErrorMessage = 'Fill with correct value';
+	private static readonly defaultErrorMessage = 'Enter the correct value';
 
 	@Input()
 	private control: AbstractControlDirective | AbstractControl;

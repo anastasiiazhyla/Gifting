@@ -8,9 +8,9 @@ namespace Gifting.Services.Interfaces
 	{
 		Task<long> Create(Grantee grantee);
 
-		void Delete(long id);
+		Task Delete(long id);
 
-		void Update(Grantee grantee);
+		Task Update(Grantee grantee);
 
 		Task<List<Grantee>> GetAvailable(long? userId);
 	}

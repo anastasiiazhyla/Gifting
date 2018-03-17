@@ -1,7 +1,7 @@
 <div class="container">
-	<h1>Add new idea</h1>
+	<h1>Update idea</h1>
 	<general-error-message [errorMessages]="errorMessages"></general-error-message>
-	<form #addIdeaForm="ngForm" (ngSubmit)="onSubmit(addIdeaForm)">
+	<form #updateIdeaForm="ngForm" (ngSubmit)="onSubmit(updateIdeaForm)">
 		<div class="form-group">
 			<label for="name">Name</label>
 			<input type="text" class="form-control" id="name" required maxlength="255" (ngModel)="name" name="name" #name="ngModel">
@@ -40,6 +40,6 @@
 			</select>
 			<field-error-message [control]="granteeId"></field-error-message>
 		</div>
-		<button type="submit" class="btn btn-default" [disabled]="!addIdeaForm.valid">Submit</button>
+		<button type="submit" class="btn btn-default" [disabled]="!updateIdeaForm.valid">Submit</button>
 	</form>
 </div>

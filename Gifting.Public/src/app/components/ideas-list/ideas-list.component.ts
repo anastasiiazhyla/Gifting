@@ -11,11 +11,30 @@ import { Idea } from '../../models/idea';
 export class IdeasListComponent implements OnInit {
 	//ideas: Observable<Idea[]>;
 	ideas: Idea[];
+	errorMessages: string[] = [];
 
 	constructor(private ideaService: IdeaService) {}
 
 	ngOnInit() {
-		this.ideaService.getAllIdeas(1).subscribe(i => { this.ideas = i; console.log(this.ideas);});
-		   
+		this.ideaService.getAllIdeas(1).subscribe(i => { this.ideas = i; });
+	}
+
+	delete(id) {
+		if (confirm("Do you want to delete this idea?")) {
+			this.ideaService.deleteIdea(id)
+				.subscribe(data => {
+						const index = this.ideas.findIndex(x => x.id === id);
+						this.ideas.splice(index, 1);
+					},
+				error => this.errorMessages = [error]);
+		}
+	}
+
+	edit(id) {
+		
+	}
+
+	view(id) {
+
 	}
 }

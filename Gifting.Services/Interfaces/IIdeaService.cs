@@ -9,9 +9,9 @@ namespace Gifting.Services.Interfaces
 	{
 		Task<long> Create(Idea idea);
 
-		void Delete(long id);
+		Task Delete(long id);
 
-		void Update(Idea idea);
+		Task Update(Idea idea);
 
 		Task<List<Idea>> GetAll(PagingParameters pagingParameters);
 

@@ -2,12 +2,14 @@ using System.Text;
 using Gifting.DataAccess.Interfaces;
 using Gifting.DataAccess.Repositories;
 using Gifting.Models.Models;
+using Gifting.Public.Filters;
 using Gifting.Public.Models;
 using Gifting.Services;
 using Gifting.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -55,7 +57,9 @@ namespace Gifting.Public
 					};
 				});
 
-			services.AddMvc();
+			services.AddMvc(config => {
+				config.Filters.Add(typeof(ExceptionFilter));
+			});
 
 			RegisterDependencyInjections(services);
 		}
@@ -80,7 +84,8 @@ namespace Gifting.Public
 			}
 			else
 			{
-				app.UseExceptionHandler("/Error");
+				app.UseExceptionHandler("/error");
+				app.UseStatusCodePagesWithRedirects("/error/{0}");
 			}
 
 			app.UseStaticFiles();
@@ -106,6 +111,10 @@ namespace Gifting.Public
 			services.AddScoped<IIdeaRepository, IdeaRepository>();
 			services.AddScoped<IGranteeRepository, GranteeRepository>();
 			services.AddScoped<IOccasionRepository, OccasionRepository>();
+
+			// other
+			services.AddScoped(typeof(IPasswordHasher<>), typeof(PasswordHasher<>));
+
 		}
 	}
 }

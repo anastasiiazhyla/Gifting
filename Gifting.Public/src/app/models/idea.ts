@@ -5,7 +5,7 @@ export class Idea {
 	constructor(
 		public name: string,
 		public description?: string,
-		public image?: string,
+		public imageUrl?: string,
 		public whereToBuy?: string,
 		public occasionId?: number,
 		public granteeId?: number,

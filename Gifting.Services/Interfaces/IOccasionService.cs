@@ -8,9 +8,9 @@ namespace Gifting.Services.Interfaces
 	{
 		Task<long> Create(Occasion occasion);
 
-		void Delete(long id);
+		Task Delete(long id);
 
-		void Update(Occasion occasion);
+		Task Update(Occasion occasion);
 
 		Task<List<Occasion>> GetAvailable(long? userId);
 	}

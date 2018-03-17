@@ -91,6 +91,7 @@
     <Build Include="Procedures\Occasion_GetById.sql" />
     <Build Include="Procedures\Occasion_GetByUserId.sql" />
     <Build Include="Procedures\Occasion_Update.sql" />
+    <Build Include="Procedures\User_Delete.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Gifting.Database.refactorlog" />

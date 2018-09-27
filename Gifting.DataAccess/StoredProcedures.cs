@@ -38,5 +38,17 @@
 			public static string GetById = "Occasion_GetById";
 			public static string GetByUserId = "Occasion_GetByUserId";
 		}
+
+		public static class IdeaGrantee
+		{
+			public static string Create = "IdeaGrantee_Create";
+			public static string Update = "IdeaGrantee_Update";
+		}
+
+		public static class IdeaOccasion
+		{
+			public static string Create = "IdeaOccasion_Create";
+			public static string Update = "IdeaOccasion_Update";
+		}
 	}
 }

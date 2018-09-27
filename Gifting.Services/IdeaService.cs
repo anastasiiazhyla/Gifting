@@ -12,16 +12,33 @@ namespace Gifting.Services
 	public class IdeaService : IIdeaService
 	{
 		private readonly IIdeaRepository _ideaRepository;
+		private readonly IIdeaGranteeRepository _ideaGranteeRepository;
+		private readonly IIdeaOccasionRepository _ideaOccasionRepository;
 
-		public IdeaService(IIdeaRepository ideaRepository)
+		public IdeaService(
+			IIdeaRepository ideaRepository,
+			IIdeaGranteeRepository ideaGranteeRepository,
+			IIdeaOccasionRepository ideaOccasionRepository)
 		{
 			_ideaRepository = ideaRepository;
+			_ideaGranteeRepository = ideaGranteeRepository;
+			_ideaOccasionRepository = ideaOccasionRepository;
 		}
 
 		public async Task<long> Create(Idea idea)
 		{
 			idea.DateCreated = DateTime.Now;
 			await _ideaRepository.Create(idea);
+
+			if (idea.GranteeId.HasValue)
+			{
+				await _ideaGranteeRepository.Create(idea.Id, idea.GranteeId.Value);
+			}
+
+			if (idea.OccasionId.HasValue)
+			{
+				await _ideaOccasionRepository.Create(idea.Id, idea.OccasionId.Value);
+			}
 
 			return idea.Id;
 		}

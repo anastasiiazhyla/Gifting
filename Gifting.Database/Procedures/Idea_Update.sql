@@ -3,7 +3,8 @@
 	@Name NVARCHAR(255),
 	@Description NVARCHAR(MAX),
 	@Tags NVARCHAR(MAX),
-	@ImageUrl NVARCHAR(MAX)
+	@ImageUrl NVARCHAR(MAX),
+	@WhereToBuy  NVARCHAR(MAX)
 AS
 BEGIN
 
@@ -12,7 +13,8 @@ SET
 	[Name] = @Name,
 	[Description] = @Description,
 	[Tags] = @Tags,
-	[ImageUrl] = @ImageUrl
+	[ImageUrl] = @ImageUrl,
+	[WhereToBuy] = @WhereToBuy
 WHERE Id = @Id
 
 END

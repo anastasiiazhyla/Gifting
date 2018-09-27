@@ -36,7 +36,7 @@ namespace Gifting.DataAccess.Repositories
 			parameters.Add("@ImageUrl", idea.ImageUrl);
 			parameters.Add("@UserId", idea.UserId);
 			parameters.Add("@IsApproved", idea.IsApproved);
-
+			parameters.Add("@WhereToBuy", idea.WhereToBuy);
 			await ExecuteAsync(StoredProcedures.Idea.Create, parameters);
 
 			idea.Id = parameters.Get<long>("@Id");
@@ -52,6 +52,7 @@ namespace Gifting.DataAccess.Repositories
 			parameters.Add("@Description", idea.Description);
 			parameters.Add("@Tags", idea.Tags);
 			parameters.Add("@ImageUrl", idea.ImageUrl);
+			parameters.Add("@WhereToBuy", idea.WhereToBuy);
 
 			int rowsAffected = await ExecuteAsync(StoredProcedures.Idea.Update, parameters);
 

@@ -4,7 +4,9 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatCardModule, MatGridListModule, MatButtonModule, MatIconModule, MatTooltipModule } from '@angular/material';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { IdeasListComponent } from './components/ideas-list/ideas-list.component';
@@ -16,6 +18,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { NearestEventsComponent } from './components/nearest-events/nearest-events.component';
 import { FieldErrorMessageComponent } from './components/field-error-message/field-error-message.component';
 import { GeneralErrorMessageComponent } from './components/general-error-message/general-error-message.component';
+import { UpdateIdeaComponent } from './components/update-idea/update-idea.component';
 
 import { AppService } from './services/app.service';
 import { IdeaService } from './services/idea.service';
@@ -29,7 +32,7 @@ import { ErrorHandlingService } from './services/common/error-handling.service'
 import { UserProfile } from './models/account';
 import { CustomHttpInterceptor } from './services/common/custom-http-interceptor';
 import { AuthGuard } from './guards/auth.guard';
-import { UpdateIdeaComponent } from './components/update-idea/update-idea.component';
+
 
 @NgModule({
 	declarations: [
@@ -51,7 +54,9 @@ import { UpdateIdeaComponent } from './components/update-idea/update-idea.compon
 		FormsModule,
 		HttpClientModule,
 		AppRoutingModule,
-		AngularFontAwesomeModule
+		BrowserAnimationsModule,
+		MatCardModule, MatGridListModule, MatButtonModule, MatIconModule, MatTooltipModule,
+		NgMasonryGridModule
 	],
 	providers: [
 		{ provide: HTTP_INTERCEPTORS, useClass: CustomHttpInterceptor, multi: true },

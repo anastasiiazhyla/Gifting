@@ -4,27 +4,27 @@
 	<form #updateIdeaForm="ngForm" (ngSubmit)="onSubmit(updateIdeaForm)">
 		<div class="form-group">
 			<label for="name">Name</label>
-			<input type="text" class="form-control" id="name" required maxlength="255" (ngModel)="name" name="name" #name="ngModel">
+			<input type="text" class="form-control" id="name" required maxlength="255" [(ngModel)]="idea.name" name="name" #name="ngModel">
 			<field-error-message [control]="name"></field-error-message>
 		</div>
 		<div class="form-group">
 			<label for="description">Description</label>
-			<input type="text" class="form-control" id="description" (ngModel)="description" name="description" #description="ngModel">
+			<input type="text" class="form-control" id="description" [(ngModel)]="idea.description" name="description" #description="ngModel">
 			<field-error-message [control]="description"></field-error-message>
 		</div>
 		<div class="form-group">
 			<label for="imageUrl">Image URL</label>
-			<input type="text" class="form-control" id="imageUrl" (ngModel)="imageUrl" name="imageUrl" #imageUrl="ngModel">
+			<input type="text" class="form-control" id="imageUrl" [(ngModel)]="idea.imageUrl" name="imageUrl" #imageUrl="ngModel">
 			<field-error-message [control]="imageUrl"></field-error-message>
 		</div>
 		<div class="form-group">
 			<label for="whereToBuy">Where to buy</label>
-			<input type="text" class="form-control" id="whereToBuy" (ngModel)="whereToBuy" name="whereToBuy" #whereToBuy="ngModel">
+			<input type="text" class="form-control" id="whereToBuy" [(ngModel)]="idea.whereToBuy" name="whereToBuy" #whereToBuy="ngModel">
 			<field-error-message [control]="whereToBuy"></field-error-message>
 		</div>
 		<div class="form-group">
 			<label for="occasionId">Occasion</label>
-			<select class="form-control" id="occasionId" (ngModel)="occasionId" name="occasionId" #occasionId="ngModel">
+			<select class="form-control" id="occasionId" [(ngModel)]="idea.occasionId" name="occasionId" #occasionId="ngModel">
 				<option *ngFor="let o of occasions" [value]="o.id">
 					{{o.name}}
 				</option>
@@ -33,7 +33,7 @@
 		</div>
 		<div class="form-group">
 			<label for="granteeId">For whom</label>
-			<select class="form-control" id="granteeId" (ngModel)="granteeId" name="granteeId" #granteeId="ngModel">
+			<select class="form-control" id="granteeId" [(ngModel)]="idea.granteeId" name="granteeId" #granteeId="ngModel">
 				<option *ngFor="let g of grantees" [value]="g.id">
 					{{g.name}}
 				</option>

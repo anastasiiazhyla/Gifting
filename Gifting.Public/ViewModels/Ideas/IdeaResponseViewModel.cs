@@ -8,7 +8,7 @@ namespace Gifting.Public.ViewModels.Ideas
 			long id,
 			string name,
 			string description,
-			string image,
+			string imageUrl,
 			string whereToBuy,
 			long? occasionId,
 			long? granteeId,
@@ -17,7 +17,7 @@ namespace Gifting.Public.ViewModels.Ideas
 			Id = id;
 			Name = name;
 			Description = description;
-			Image = image;
+			ImageUrl = imageUrl;
 			WhereToBuy = whereToBuy;
 			OccasionId = occasionId;
 			GranteeId = granteeId;
@@ -30,7 +30,7 @@ namespace Gifting.Public.ViewModels.Ideas
 
 		public string Description { get; set; }
 
-		public string Image { get; set; }
+		public string ImageUrl { get; set; }
 
 		public string WhereToBuy { get; set; }
 

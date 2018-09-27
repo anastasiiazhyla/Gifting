@@ -1,12 +1,36 @@
 <general-error-message [errorMessages]="errorMessages"></general-error-message>
-<ul>
-	<!--| async-->
-	<li *ngFor="let idea of ideas">
-		{{idea.name}}
-		<span>
-			<a routerLink="/viewIdea/{{idea.id}}" class="fa fa-eye" title="View"></a>
-			<a routerLink="/updateIdea/{{idea.id}}" class="fa fa-edit" title="Update"></a>
-			<a (click)="delete(idea.id)" class="fa fa-trash-alt" title="Delete"></a>
-		</span>
-	</li>
-</ul>
+<!--| async-->
+
+<ng-masonry-grid [masonryOptions]="{ transitionDuration: '0.8s', gutter: 10, itemSelector: '.grid-item' }"
+				 [useAnimation]="false"
+				 [useImagesLoaded]="true">
+<!--  columnWidth: '.grid-sizer', percentPosition: true -->
+	<!-- Masonry Grid Item -->
+	<div class="grid-sizer"></div>
+	<ng-masonry-grid-item id="{{'masonry-item-'+i}}" *ngFor="let idea of ideas; let i = index;" (click)="removeItem($event)" class="grid-item">
+		<mat-card>
+			<mat-card-header>
+				<mat-card-title>{{idea.name}}</mat-card-title>
+			</mat-card-header>
+			<img mat-card-image src="{{idea.imageUrl}}" alt="{{idea.name}}">
+			<mat-card-content>
+				<p>
+					{{idea.description}}
+				</p>
+			</mat-card-content>
+			<mat-card-actions>
+				<div class="button-row">
+					<a mat-icon-button matTooltip="View" routerLink="/viewIdea/{{idea.id}}">
+						<mat-icon>details</mat-icon>
+					</a>
+					<a mat-icon-button matTooltip="Update" routerLink="/updateIdea/{{idea.id}}">
+						<mat-icon>edit</mat-icon>
+					</a>
+					<a mat-icon-button matTooltip="Delete" (click)="delete(idea.id)">
+						<mat-icon>clear</mat-icon>
+					</a>
+				</div>
+			</mat-card-actions>
+		</mat-card>
+	</ng-masonry-grid-item>
+</ng-masonry-grid>

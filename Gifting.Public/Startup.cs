@@ -109,6 +109,8 @@ namespace Gifting.Public
 			// repositories
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IIdeaRepository, IdeaRepository>();
+			services.AddScoped<IIdeaGranteeRepository, IdeaGranteeRepository>();
+			services.AddScoped<IIdeaOccasionRepository, IdeaOccasionRepository>();
 			services.AddScoped<IGranteeRepository, GranteeRepository>();
 			services.AddScoped<IOccasionRepository, OccasionRepository>();
 

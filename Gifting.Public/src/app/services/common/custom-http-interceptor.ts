@@ -8,7 +8,7 @@ import {
 	HttpHeaders,
 	HttpErrorResponse
 	} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { UserProfile } from '../../models/account';
 import { appVariables, httpStatuses } from '../../app.constants';
 import { HelperService } from './helper.service';

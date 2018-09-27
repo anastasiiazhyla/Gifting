@@ -73,7 +73,7 @@
     <Build Include="Tables\Occasion.sql" />
     <Build Include="Tables\OccasionDates.sql" />
     <Build Include="Tables\Idea.sql" />
-    <Build Include="Tables\IdeaForEvent.sql" />
+    <Build Include="Tables\IdeaOccasion.sql" />
     <Build Include="Tables\Gift.sql" />
     <Build Include="Procedures\Idea_Create.sql" />
     <Build Include="Procedures\Idea_Update.sql" />
@@ -92,6 +92,11 @@
     <Build Include="Procedures\Occasion_GetByUserId.sql" />
     <Build Include="Procedures\Occasion_Update.sql" />
     <Build Include="Procedures\User_Delete.sql" />
+    <Build Include="Procedures\IdeaOccasion_Create.sql" />
+    <Build Include="Procedures\IdeaOccasion_Update.sql" />
+    <Build Include="Tables\IdeaGrantee.sql" />
+    <Build Include="Procedures\IdeaGrantee_Create.sql" />
+    <Build Include="Procedures\IdeaGrantee_Update.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Gifting.Database.refactorlog" />

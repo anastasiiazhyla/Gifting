@@ -7,5 +7,6 @@
 	[Tags] NVARCHAR(MAX) NULL,
 	[ImageUrl] NVARCHAR(MAX) NULL,
 	[UserId] BIGINT NULL FOREIGN KEY REFERENCES [User](Id),
-	[IsApproved] BIT NOT NULL
+	[IsApproved] BIT NOT NULL, 
+	[WhereToBuy] NVARCHAR(MAX) NULL
 )

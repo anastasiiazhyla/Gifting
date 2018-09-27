@@ -6,7 +6,8 @@
 	@Tags NVARCHAR(MAX),
 	@ImageUrl NVARCHAR(MAX),
 	@UserId BIGINT,
-	@IsApproved BIT
+	@IsApproved BIT,
+	@WhereToBuy  NVARCHAR(MAX)
 AS
 BEGIN
 
@@ -17,7 +18,8 @@ INSERT INTO [Idea]
 	,[Tags]
 	,[ImageUrl]
 	,[UserId]
-	,[IsApproved])
+	,[IsApproved]
+	,[WhereToBuy])
 VALUES
 	(@Name
 	,@Description
@@ -25,7 +27,8 @@ VALUES
 	,@Tags
 	,@ImageUrl
 	,@UserId
-	,@IsApproved)
+	,@IsApproved
+	,@WhereToBuy)
 
 SELECT @Id = @@IDENTITY
 
